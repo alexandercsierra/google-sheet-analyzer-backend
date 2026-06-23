@@ -63,9 +63,17 @@ server.post("/askGemini", async (req: any, res: any) => {
   try {
     const answer = await askGemini(prompt);
     res.status(200).json({ answer });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error asking Gemini:", error);
-    res.status(500).json({ error: "Failed to get response from Gemini" });
+
+    const geminiMessage =
+      error?.response?.data?.error?.message ||
+      error?.message ||
+      "An unexpected error occurred.";
+
+    res.status(500).json({
+      error: geminiMessage,
+    });
   }
 });
 
