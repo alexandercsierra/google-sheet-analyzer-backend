@@ -12,7 +12,6 @@ const { GoogleGenAI } = require("@google/genai");
 
 const server = express();
 const SECRET = process.env.SESSION_SECRET;
-const SHEET_ID = process.env.GOOGLE_SHEET_ID;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const credentials = JSON.parse(
   fs.readFileSync(path.join(__dirname, "../creds.json"), "utf-8")
